@@ -1,0 +1,20 @@
+nav {
+  background-color: aquamarine;
+  padding: 10px;
+  text-align: center;
+}
+
+h1 {
+  background-color: aquamarine;
+  font-family: Oswald ;
+  text-align: center;
+
+}
+#contenido {
+  border: 3px solid gray;
+  min-height: 200px;
+}
+
+a {
+  padding: 10px;
+}
