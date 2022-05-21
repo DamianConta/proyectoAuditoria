@@ -33,6 +33,7 @@ function cargarContenido(ruta){
   if("cache" in routes[ruta] && routes[ruta].cache){
     contenido.innerHTML = routes[ruta].cache;
     document.title = routes[ruta].titulo;
+    recrearScripts();
     return;
   }
 
@@ -51,22 +52,33 @@ function cargarContenido(ruta){
 }
 
 function reconstruirPagina(e) {
-  //console.log(e.state);
+  //console.log(location.pathname);
   let miRuta = location.pathname;
   cargarContenido(miRuta);
 }
 
 function recrearScripts(){
   const scripts = contenido.querySelectorAll("script");
+
+  console.log(scripts);
+  
   const fuentes = [];
   scripts.forEach(s => {
+    
+    if (s.getAttribute("src")){
     fuentes.push( s.getAttribute("src") );
+    }else{
+    fuentes.push(s.getAttribute("outerText"));  
+    }
     s.remove();
   });
   const frag = document.createDocumentFragment();
   fuentes.forEach(f => {
     let scriptNuevo = document.createElement("script");
-    scriptNuevo.setAttribute("src", f);
+    if (f!="") scriptNuevo.setAttribute("src", f)
+    else {scriptNuevo.setAttribute("outerText",f)
+
+    }
     frag.appendChild(scriptNuevo);
   });
   contenido.appendChild(frag);

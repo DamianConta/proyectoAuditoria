@@ -1,5 +1,9 @@
 const routes = {
-  "/": {
+  "/index.html": {
+    url: "views/home/index.html", 
+    titulo: "Bienvenidos!",
+  },
+    "/": {
     url: "views/home/index.html", 
     titulo: "Bienvenidos!",
   },
